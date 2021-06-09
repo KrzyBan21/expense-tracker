@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+
+//Variables
+$gb-font: 1.8rem;
+
+//Overall settings
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $gb-font;
+  font-family: "Lato", sans-serif;
+}
