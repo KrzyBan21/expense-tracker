@@ -1,0 +1,21 @@
+.auth-form {
+  width: 100%;
+  padding: 1rem;
+  color: black;
+
+  &__change-method {
+    text-align: center;
+    font-size: 2rem;
+    margin: 3rem;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,11 @@
+@import "../../sass/base.scss";
+
+.auth-container {
+  width: 90%;
+  // height: %;
+
+  @media (min-width: $tablet) {
+    width: 50rem;
+  }
+}
+

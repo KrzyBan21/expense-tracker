@@ -1,0 +1,20 @@
+.input-component {
+  color: black;
+  font-size: 2.5rem;
+  padding: 1rem;
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+  }
+}

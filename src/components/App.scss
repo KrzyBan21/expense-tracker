@@ -5,8 +5,9 @@
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("../img/money.jpg");
-    background-blend-mode: luminosity;
+  background-blend-mode: luminosity;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  color: white; //to remove
 }
