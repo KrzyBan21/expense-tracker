@@ -1,6 +1,6 @@
 .auth-form {
-  width: 100%;
-  padding: 1rem;
+  width: 85%;
+  // padding: 2rem;
   color: black;
 
   &__change-method {
@@ -13,6 +13,13 @@
       cursor: pointer;
       color: darken(lightblue, 20%);
     }
+  }
+
+  &__error-message{
+    color: red;
+    font-size: 2.2rem;
+    margin: 1.5rem 0;
+    text-align: center;
   }
 }
 

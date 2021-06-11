@@ -17,4 +17,11 @@
     padding: 0.5rem 1rem;
     outline: none;
   }
+
+  &__error{
+    color: red;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
 }
