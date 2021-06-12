@@ -28,6 +28,7 @@ const AuthForm = ({
   onChangeType,
   onAuth,
   authError,
+  loading,
 }) => {
   const formik = useFormik({
     initialValues: {
@@ -40,8 +41,13 @@ const AuthForm = ({
     },
   });
 
+  const invisibleStyle = loading ? " auth-form--invisible" : "";
+
   return (
-    <form className="auth-form" onSubmit={formik.handleSubmit}>
+    <form
+      className={"auth-form" + invisibleStyle}
+      onSubmit={formik.handleSubmit}
+    >
       {authError ? (
         <h3 className="auth-form__error-message">Error: {authError}</h3>
       ) : null}
@@ -71,7 +77,7 @@ const AuthForm = ({
         <Button type="submit">{authType}</Button>
       </div>
       <p onClick={onChangeType} className="auth-form__change-method">
-        Change method to {changeType}
+        Change to {changeType}
       </p>
     </form>
   );

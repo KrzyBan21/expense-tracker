@@ -6,18 +6,24 @@ import "./App.scss";
 import Auth from "../pages/Auth/Auth";
 import Main from "../pages/Main/Main";
 
-const url = "/expense-tracker";
+import { connect } from "react-redux";
 
-const App = () => {
+const App = ({ token }) => {
   return (
     <div className="app">
       <Switch>
-        <Route path={`${url}/auth`} render={() => <Auth />} />
-        <Route path={`${url}/main`} render={() => <Main />} />
-        <Redirect to={url} />
+        <Route path="/auth" render={() => <Auth />} />
+        {token && <Route path="/main" render={() => <Main />} />}
+        <Redirect to="/auth" />
       </Switch>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.token,
+  };
+};
+
+export default connect(mapStateToProps)(App);
