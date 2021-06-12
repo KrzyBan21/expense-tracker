@@ -1,0 +1,15 @@
+.mobile-menu {
+  position: fixed;
+  height: 100vh;
+  width: 70%;
+  background-color: white;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  transition: 0.2s transform ease-out;
+
+  &--animation {
+    transform: translateX(0);
+  }
+}

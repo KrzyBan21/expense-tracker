@@ -1,0 +1,9 @@
+@mixin hamburgerIconStyles {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  background-color: inherit;
+}

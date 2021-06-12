@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Main.scss";
+
+import Container from "../../components/Container/Container";
+import CurrentMonth from "../../components/CurrentMonth/CurrentMonth";
+// import NavBar from "../../components/UI/NavBar/NavBar";
+import HamburgerIcon from "../../components/UI/HamburgerIcon/HamburgerIcon";
+import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
 
 const Main = () => {
-  return (
-    <main>
-      Main
-      {/* <nav className="app__navigation">Wyloguj</nav>
+  const [openMenu, setOpenMenu] = useState(false);
 
-      <div className="app__month">Month</div>
-      <div className="app__main"></div>
-      <div className="app__mobile">
-        <div className="app__button"></div>
-        <div className="app__button"></div>
-      </div> */}
-    </main>
+  const onMenuOpen = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  return (
+    <div className="main-content">
+      <MobileMenu openMenu={openMenu} onMenuOpen={onMenuOpen} />
+      <div className="main-content__menu">
+        <HamburgerIcon onMenuOpen={onMenuOpen} />
+      </div>
+      <CurrentMonth />
+      <div className="main-content__form">
+        <Container>Wydatki</Container>
+      </div>
+    </div>
   );
 };
 

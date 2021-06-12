@@ -1,0 +1,11 @@
+.nav-list{
+    height: 100%;
+
+    &__list{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
