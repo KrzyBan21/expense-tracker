@@ -6,6 +6,7 @@ import CurrentMonth from "../../components/CurrentMonth/CurrentMonth";
 // import NavBar from "../../components/UI/NavBar/NavBar";
 import HamburgerIcon from "../../components/UI/HamburgerIcon/HamburgerIcon";
 import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
+import MainForm from "../../components/MainForm/MainForm";
 
 const Main = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -20,9 +21,15 @@ const Main = () => {
       <div className="main-content__menu">
         <HamburgerIcon onMenuOpen={onMenuOpen} />
       </div>
-      <CurrentMonth />
+      <div className="main-content__month">
+        <Container>
+          <CurrentMonth />
+        </Container>
+      </div>
       <div className="main-content__form">
-        <Container>Wydatki</Container>
+        <Container>
+          <MainForm />
+        </Container>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+.select-item {
+  color: black;
+  font-size: 2.2rem;
+  padding: 1rem;
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  &__select {
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+  }
+
+  &__error {
+    color: red;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}

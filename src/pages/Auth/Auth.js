@@ -33,7 +33,7 @@ const Auth = ({ token, loading }) => {
 
   return (
     <div className="auth-container">
-      <Container title={type}>
+      <Container title={type} showTitle={true}>
         {loading && (
           <div className="auth-container__spinner">
             <Spinner />
