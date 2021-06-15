@@ -6,6 +6,8 @@ const initialState = {
   expenses: [],
   error: null,
   loading: false,
+  types: ["income", "expense"],
+  choosenType: "expense",
 };
 
 const getCategoriesStart = (state) => {
@@ -36,6 +38,14 @@ const getCategoriesFail = (state, action) => {
   return copy(state, newState);
 };
 
+const changeCategory = (state) => {
+  const newState = {
+    choosenType: state.choosenType === "expense" ? "income" : "expense",
+  };
+
+  return copy(state, newState);
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_CATEGORIES_START:
@@ -44,6 +54,8 @@ const reducer = (state = initialState, action) => {
       return getCategoriesSuccess(state, action);
     case actionTypes.GET_CATEGORIES_FAIL:
       return getCategoriesFail(state, action);
+    case actionTypes.CHANGE_CATEGORY:
+      return changeCategory(state);
     default:
       return state;
   }

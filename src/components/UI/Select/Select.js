@@ -10,9 +10,15 @@ const Select = ({
   error,
   blur,
   touched,
+  def,
+  changeHandler,
 }) => {
   const optionsArr = options.map((value) => {
-    return (
+    return def === value ? (
+      <option key={value} value={value}>
+        {value.charAt(0).toUpperCase() + value.slice(1)}
+      </option>
+    ) : (
       <option key={value} value={value}>
         {value.charAt(0).toUpperCase() + value.slice(1)}
       </option>
@@ -24,7 +30,17 @@ const Select = ({
       <label htmlFor={inpFor} className="select-item__label">
         {children}
       </label>
-      <select name={inpFor} id={inpFor} className="select-item__select">
+      <select
+        name={inpFor}
+        id={inpFor}
+        className="select-item__select"
+        onChange={
+          typeof changeHandler === "function"
+            ? (...args) => changeHandler(...args)
+            : null
+        }
+        defaultValue={def}
+      >
         {optionsArr}
       </select>
       {touched && error ? <p className="select-item__error">{error}</p> : null}

@@ -41,3 +41,9 @@ export const getCategories = () => {
     }
   };
 };
+
+export const changeCategory = () => {
+  return {
+    type: actionTypes.CHANGE_CATEGORY,
+  };
+};

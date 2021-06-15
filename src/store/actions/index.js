@@ -1,2 +1,2 @@
 export { auth, logout } from "./auth";
-export { getCategories } from "./categories";
+export { getCategories, changeCategory } from "./categories";
