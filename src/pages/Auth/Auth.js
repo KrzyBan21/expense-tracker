@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const authTypes = ["Sign In", "Log In"];
 
-const Auth = ({ token, loading }) => {
+const Auth = ({ token, loading, categoriesLoading }) => {
   const [authType, setAuthType] = useState(authTypes[0]);
   const history = useHistory();
 
@@ -18,7 +18,7 @@ const Auth = ({ token, loading }) => {
   const changeType = authType === authTypes[0] ? authTypes[1] : authTypes[0];
 
   useEffect(() => {
-    if (token) {
+    if (token && !categoriesLoading) {
       history.replace("/main");
     }
   });
@@ -54,6 +54,7 @@ const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
     loading: state.auth.loading,
+    categoriesLoading: state.categories.loading,
   };
 };
 

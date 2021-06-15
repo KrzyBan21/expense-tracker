@@ -3,7 +3,6 @@ import "./Main.scss";
 
 import Container from "../../components/Container/Container";
 import CurrentMonth from "../../components/CurrentMonth/CurrentMonth";
-// import NavBar from "../../components/UI/NavBar/NavBar";
 import HamburgerIcon from "../../components/UI/HamburgerIcon/HamburgerIcon";
 import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
 import MainForm from "../../components/MainForm/MainForm";

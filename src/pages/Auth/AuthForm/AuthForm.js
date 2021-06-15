@@ -29,6 +29,7 @@ const AuthForm = ({
   onAuth,
   authError,
   loading,
+  onGetCategories
 }) => {
   const formik = useFormik({
     initialValues: {
@@ -38,6 +39,7 @@ const AuthForm = ({
     validate,
     onSubmit: (values) => {
       onAuth(values.email, values.password, authType);
+      onGetCategories();
     },
   });
 
@@ -93,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, signIn) =>
       dispatch(actions.auth(email, password, signIn)),
+    onGetCategories: () => dispatch(actions.getCategories()),
   };
 };
 
