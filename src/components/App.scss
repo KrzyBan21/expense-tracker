@@ -1,13 +1,25 @@
 @import "../sass/base.scss";
 
 .app {
-  width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../img/money.jpg");
-  background-blend-mode: luminosity;
+  // width: 100vw;
+  // height: 100vh;
+
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; //to remove
+}
+
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/money.jpg");
+  background-blend-mode: luminosity;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
 }

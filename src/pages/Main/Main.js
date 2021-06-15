@@ -31,6 +31,16 @@ const Main = () => {
           <MainForm />
         </Container>
       </div>
+      <div className="main-content__chart main-content--income">
+        <Container>
+          <MainForm />
+        </Container>
+      </div>
+      <div className="main-content__chart main-content--expense">
+        <Container>
+          <MainForm />
+        </Container>
+      </div>
     </div>
   );
 };
