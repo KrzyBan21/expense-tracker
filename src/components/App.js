@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import "./App.scss";
@@ -6,9 +6,17 @@ import "./App.scss";
 import Auth from "../pages/Auth/Auth";
 import Main from "../pages/Main/Main";
 
+import * as actions from "../store/actions/index";
+
 import { connect } from "react-redux";
 
-const App = ({ token }) => {
+const App = ({ token, onAuthCheckState }) => {
+  useEffect(() => {
+    onAuthCheckState();
+    console.log('gownow')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Fragment>
       <div className="background"></div>
@@ -30,4 +38,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuthCheckState: () => dispatch(actions.authCheckState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

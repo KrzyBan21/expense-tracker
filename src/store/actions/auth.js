@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import * as actions from "./index";
 
 const authStart = () => {
   return {
@@ -65,5 +66,37 @@ export const logout = () => {
 
   return {
     type: actionTypes.AUTH_LOGOUT,
+  };
+};
+
+const checkAuthTimeout = (expirationTime) => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(logout());
+    }, expirationTime * 1000);
+  };
+};
+
+export const authCheckState = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const expirationDate = new Date(localStorage.getItem("expirationDate"));
+      if (new Date(expirationDate) <= new Date()) {
+        dispatch(logout());
+      } else {
+        const userId = localStorage.getItem("userId");
+        dispatch(authSuccess(token, userId));
+        dispatch(actions.getCategories());
+        dispatch(
+          checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
+        );
+      }
+    }
   };
 };
