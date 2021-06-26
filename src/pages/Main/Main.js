@@ -30,7 +30,7 @@ const Main = () => {
           <MainForm />
         </Container>
       </div>
-      <div className="main-content__chart main-content--income">
+      {/* <div className="main-content__chart main-content--income">
         <Container>
           <MainForm />
         </Container>
@@ -39,7 +39,7 @@ const Main = () => {
         <Container>
           <MainForm />
         </Container>
-      </div>
+      </div> */}
     </div>
   );
 };
