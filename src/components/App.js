@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 const App = ({ token, onAuthCheckState }) => {
   useEffect(() => {
     onAuthCheckState();
-    console.log('gownow')
+    // console.log('gownow')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

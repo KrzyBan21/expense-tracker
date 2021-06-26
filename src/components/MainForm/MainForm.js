@@ -37,6 +37,7 @@ const MainForm = ({
   incomes,
   expenses,
   onChangeCategory,
+  onPostData
 }) => {
   const formik = useFormik({
     initialValues: {
@@ -48,6 +49,7 @@ const MainForm = ({
     validate,
     onSubmit: (values) => {
       console.log(values);
+      onPostData(values);
       formik.resetForm({
         type: "expense",
         category: "",
@@ -132,6 +134,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeCategory: () => dispatch(actions.changeCategory()),
+    onPostData: (data) => dispatch(actions.postData(data)),
   };
 };
 
