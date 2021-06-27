@@ -25,8 +25,8 @@ const CurrentMonth = ({ month, year, onNextMonth, onPreviousMonth }) => {
 
 const mapStateToProps = (state) => {
   return {
-    month: state.month.currentDate.getFullMonth(),
-    year: state.month.currentDate.getYear(),
+    month: state.month.currentFullMonth,
+    year: state.month.currentYear,
   };
 };
 

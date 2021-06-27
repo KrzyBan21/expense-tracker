@@ -1,31 +1,69 @@
 import * as actionTypes from "../actions/actionTypes";
 import { copy } from "../utils";
-import CurrentDate from "../../utils/CurrentDate";
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const initialState = {
-  currentDate: new CurrentDate(),
+  currentMonth: new Date().getMonth(),
+  currentYear: new Date().getFullYear(),
+  currentFullMonth: months[new Date().getMonth()],
 };
 
 const nextMonth = (state, action) => {
-  state.currentDate.nextMonth();
-  const newDate = new CurrentDate(
-    state.currentDate.getMonth(),
-    state.currentDate.getYear()
-  );
+  let currentMonth, currentYear, currentFullMonth;
 
-  const newState = { currentDate: newDate };
+  currentYear = state.currentYear;
+
+  if (state.currentMonth === 11) {
+    currentMonth = 0;
+    currentYear = state.currentYear + 1;
+  } else {
+    currentMonth = state.currentMonth + 1;
+  }
+
+  currentFullMonth = months[currentMonth];
+
+  const newState = {
+    currentMonth,
+    currentYear,
+    currentFullMonth,
+  };
 
   return copy(state, newState);
 };
 
 const previousMonth = (state) => {
-  state.currentDate.previousMonth();
-  const newDate = new CurrentDate(
-    state.currentDate.getMonth(),
-    state.currentDate.getYear()
-  );
+  let currentMonth, currentYear, currentFullMonth;
 
-  const newState = { currentDate: newDate };
+  currentYear = state.currentYear;
+
+  if (state.currentMonth === 0) {
+    currentMonth = 11;
+    currentYear = state.currentYear - 1;
+  } else {
+    currentMonth = state.currentMonth - 1;
+  }
+
+  currentFullMonth = months[currentMonth];
+
+  const newState = {
+    currentMonth,
+    currentYear,
+    currentFullMonth,
+  };
 
   return copy(state, newState);
 };
