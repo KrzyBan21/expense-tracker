@@ -44,7 +44,7 @@ export const auth = (email, password, signIn) => {
       const response = await axios.post(url, authData);
       const { idToken, localId, expiresIn } = response.data;
 
-      console.log(response);
+      // console.log(response);
 
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
 
