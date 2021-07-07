@@ -8,11 +8,12 @@ const postDataStart = () => {
   };
 };
 
-// const postDataSuccess = () => {
-//   return {
-//     type: actionTypes.POST_DATA_SUCCESS,
-//   };
-// };
+const postDataSuccess = (data) => {
+  return {
+    type: actionTypes.POST_DATA_SUCCESS,
+    data,
+  };
+};
 
 const postDataFail = (error) => {
   return {
@@ -21,7 +22,7 @@ const postDataFail = (error) => {
   };
 };
 
-export const postData = (createdObj) => {
+export const postData = (createdObj, incomes, expenses) => {
   return async (dispatch) => {
     try {
       dispatch(postDataStart());
@@ -29,16 +30,69 @@ export const postData = (createdObj) => {
       const userId = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
 
-      const url = `/${year}/${month}/${day}/${userId}.json`;
+      let colorObj;
 
-      const response = await firebase.post(url, createdObj, {
+      if (createdObj.type === "expense") {
+        colorObj = expenses.find((el) => el.type === createdObj.category);
+      } else if (createdObj.type === "income") {
+        colorObj = incomes.find((el) => el.type === createdObj.category);
+      }
+      createdObj.color = colorObj.color;
+
+      const url = `budget/${userId}/${year}/${month}/${day}/.json`;
+
+      await firebase.post(url, createdObj, {
         params: {
           auth: token,
         },
       });
-      console.log(response);
+      // console.log(response);
+      dispatch(postDataSuccess(createdObj));
     } catch (e) {
       dispatch(postDataFail(e));
+    }
+  };
+};
+
+const getBudgetDataStart = () => {
+  return {
+    type: actionTypes.GET_BUDGET_DATA_START,
+  };
+};
+
+const getBudgetDataSuccess = (budget) => {
+  return {
+    type: actionTypes.GET_BUDGET_DATA_SUCCESS,
+    budget,
+  };
+};
+
+const getBudgetDataFail = (error) => {
+  return {
+    type: actionTypes.GET_BUDGET_DATA_FAIL,
+    error,
+  };
+};
+
+export const getBudgetData = (year, month) => {
+  return async (dispatch) => {
+    try {
+      dispatch(getBudgetDataStart());
+
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
+      const url = `budget/${userId}/${year}/${month}/.json`;
+
+      const budget = await firebase.get(url, {
+        params: {
+          auth: token,
+        },
+      });
+      // console.log(budget.data);
+      dispatch(getBudgetDataSuccess(budget.data));
+    } catch (e) {
+      dispatch(getBudgetDataFail(e));
     }
   };
 };

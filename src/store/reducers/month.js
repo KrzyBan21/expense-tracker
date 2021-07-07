@@ -1,6 +1,12 @@
 import * as actionTypes from "../actions/actionTypes";
 import { copy } from "../utils";
 
+const monthToStr = (monthNr) => {
+  return (monthNr + 1).toString().length === 1
+    ? "0" + (monthNr + 1).toString()
+    : (monthNr + 1).toString();
+};
+
 const months = [
   "January",
   "February",
@@ -20,10 +26,11 @@ const initialState = {
   currentMonth: new Date().getMonth(),
   currentYear: new Date().getFullYear(),
   currentFullMonth: months[new Date().getMonth()],
+  currentMonthStr: monthToStr(new Date().getMonth()),
 };
 
 const nextMonth = (state, action) => {
-  let currentMonth, currentYear, currentFullMonth;
+  let currentMonth, currentYear, currentFullMonth, currentMonthStr;
 
   currentYear = state.currentYear;
 
@@ -35,18 +42,20 @@ const nextMonth = (state, action) => {
   }
 
   currentFullMonth = months[currentMonth];
+  currentMonthStr = monthToStr(currentMonth);
 
   const newState = {
     currentMonth,
     currentYear,
     currentFullMonth,
+    currentMonthStr,
   };
 
   return copy(state, newState);
 };
 
 const previousMonth = (state) => {
-  let currentMonth, currentYear, currentFullMonth;
+  let currentMonth, currentYear, currentFullMonth, currentMonthStr;
 
   currentYear = state.currentYear;
 
@@ -58,11 +67,13 @@ const previousMonth = (state) => {
   }
 
   currentFullMonth = months[currentMonth];
+  currentMonthStr = monthToStr(currentMonth);
 
   const newState = {
     currentMonth,
     currentYear,
     currentFullMonth,
+    currentMonthStr,
   };
 
   return copy(state, newState);
