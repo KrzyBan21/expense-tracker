@@ -31,91 +31,100 @@ const validate = (values) => {
   return errors;
 };
 
-const MainForm = React.memo(
-  ({ types, choosenType, incomes, expenses, onChangeCategory, onPostData }) => {
-    const formik = useFormik({
-      initialValues: {
+const MainForm = ({
+  types,
+  choosenType,
+  incomes,
+  expenses,
+  onChangeCategory,
+  onResetCategory,
+  onPostData,
+  currentMonthStr,
+  currentYear,
+}) => {
+  const formik = useFormik({
+    initialValues: {
+      type: "expense",
+      category: "",
+      amount: 0,
+      date: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      // console.log(values);
+      onPostData(values, incomes, expenses, currentMonthStr, currentYear);
+      formik.resetForm({
         type: "expense",
         category: "",
         amount: 0,
         date: "",
-      },
-      validate,
-      onSubmit: (values) => {
-        // console.log(values);
-        onPostData(values, incomes, expenses);
-        formik.resetForm({
-          type: "expense",
-          category: "",
-          amount: 0,
-          date: "",
-        });
-      },
-    });
+      });
+      onResetCategory();
+    },
+  });
 
-    const categories =
-      choosenType === "income"
-        ? incomes.map((income) => income.type)
-        : expenses.map((expense) => expense.type);
+  const categories =
+    choosenType === "income"
+      ? incomes.map((income) => income.type)
+      : expenses.map((expense) => expense.type);
 
-    const changeCategoryHandler = (e) => {
-      onChangeCategory();
-      formik.handleChange(e);
-    };
+  const changeCategoryHandler = (e) => {
+    onChangeCategory();
+    formik.handleChange(e);
+  };
 
-    return (
-      <form className="main-form" onSubmit={formik.handleSubmit}>
-        <Select
-          inpFor="type"
-          options={types}
-          def={choosenType}
-          changeHandler={changeCategoryHandler}
-          error={formik.errors.type}
-          blur={formik.handleBlur}
-          touched={formik.touched.type}
-        >
-          Type
-        </Select>
-        <Select
-          inpFor="category"
-          options={categories}
-          changeHandler={formik.handleChange}
-          value={formik.values.category}
-          error={formik.errors.category}
-          blur={formik.handleBlur}
-          touched={formik.touched.category}
-        >
-          Category
-        </Select>
-        <Input
-          inpFor="amount"
-          type="number"
-          change={formik.handleChange}
-          value={formik.values.amount}
-          error={formik.errors.amount}
-          blur={formik.handleBlur}
-          touched={formik.touched.amount}
-        >
-          Amount
-        </Input>
-        <Input
-          inpFor="date"
-          type="date"
-          change={formik.handleChange}
-          value={formik.values.date}
-          error={formik.errors.date}
-          blur={formik.handleBlur}
-          touched={formik.touched.date}
-        >
-          Date
-        </Input>
-        <div className="button-wrapper">
-          <Button type="submit">Add</Button>
-        </div>
-      </form>
-    );
-  }
-);
+  return (
+    <form className="main-form" onSubmit={formik.handleSubmit}>
+      <Select
+        inpFor="type"
+        options={types}
+        value={formik.values.type}
+        changeHandler={changeCategoryHandler}
+        error={formik.errors.type}
+        blur={formik.handleBlur}
+        touched={formik.touched.type}
+      >
+        Type
+      </Select>
+      <Select
+        inpFor="category"
+        options={categories}
+        changeHandler={formik.handleChange}
+        value={formik.values.category}
+        error={formik.errors.category}
+        blur={formik.handleBlur}
+        touched={formik.touched.category}
+      >
+        Category
+      </Select>
+      <Input
+        inpFor="amount"
+        type="number"
+        change={formik.handleChange}
+        value={formik.values.amount}
+        error={formik.errors.amount}
+        blur={formik.handleBlur}
+        touched={formik.touched.amount}
+      >
+        Amount
+      </Input>
+      <Input
+        inpFor="date"
+        type="date"
+        change={formik.handleChange}
+        value={formik.values.date}
+        error={formik.errors.date}
+        blur={formik.handleBlur}
+        touched={formik.touched.date}
+      >
+        Date
+      </Input>
+      <div className="button-wrapper">
+        <Button type="submit">Add</Button>
+      </div>
+    </form>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -123,14 +132,19 @@ const mapStateToProps = (state) => {
     choosenType: state.categories.choosenType,
     incomes: state.categories.incomes,
     expenses: state.categories.expenses,
+    currentMonthStr: state.month.currentMonthStr,
+    currentYear: state.month.currentYear,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeCategory: () => dispatch(actions.changeCategory()),
-    onPostData: (data, incomes, expenses) =>
-      dispatch(actions.postData(data, incomes, expenses)),
+    onResetCategory: () => dispatch(actions.resetCategory()),
+    onPostData: (data, incomes, expenses, currentMonthStr, currentYear) =>
+      dispatch(
+        actions.postData(data, incomes, expenses, currentMonthStr, currentYear)
+      ),
   };
 };
 

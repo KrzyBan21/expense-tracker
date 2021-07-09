@@ -1,4 +1,4 @@
 export { auth, logout, authCheckState } from "./auth";
-export { getCategories, changeCategory } from "./categories";
+export { getCategories, changeCategory, resetCategory } from "./categories";
 export { nextMonth, previousMonth } from "./month";
 export { postData, getBudgetData } from "./main";

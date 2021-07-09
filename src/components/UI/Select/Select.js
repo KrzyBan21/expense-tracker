@@ -35,7 +35,7 @@ const Select = ({
         id={inpFor}
         className="select-item__select"
         onChange={(...args) => changeHandler(...args)}
-        defaultValue={def}
+        // defaultValue={def}
         value={value}
       >
         {optionsArr}

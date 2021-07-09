@@ -8,10 +8,12 @@ const postDataStart = () => {
   };
 };
 
-const postDataSuccess = (data) => {
+const postDataSuccess = (data, currentMonth, currentYear) => {
   return {
     type: actionTypes.POST_DATA_SUCCESS,
     data,
+    currentMonth,
+    currentYear,
   };
 };
 
@@ -22,7 +24,13 @@ const postDataFail = (error) => {
   };
 };
 
-export const postData = (createdObj, incomes, expenses) => {
+export const postData = (
+  createdObj,
+  incomes,
+  expenses,
+  currentMonth,
+  currentYear
+) => {
   return async (dispatch) => {
     try {
       dispatch(postDataStart());
@@ -47,7 +55,7 @@ export const postData = (createdObj, incomes, expenses) => {
         },
       });
       // console.log(response);
-      dispatch(postDataSuccess(createdObj));
+      dispatch(postDataSuccess(createdObj, currentMonth, currentYear));
     } catch (e) {
       dispatch(postDataFail(e));
     }

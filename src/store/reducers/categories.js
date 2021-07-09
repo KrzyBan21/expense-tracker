@@ -46,6 +46,14 @@ const changeCategory = (state) => {
   return copy(state, newState);
 };
 
+const resetCategory = (state) => {
+  const newState = {
+    choosenType: "expense",
+  };
+
+  return copy(state, newState);
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_CATEGORIES_START:
@@ -56,6 +64,8 @@ const reducer = (state = initialState, action) => {
       return getCategoriesFail(state, action);
     case actionTypes.CHANGE_CATEGORY:
       return changeCategory(state);
+    case actionTypes.RESET_CATEGORY:
+      return resetCategory(state);
     default:
       return state;
   }

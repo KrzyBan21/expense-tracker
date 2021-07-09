@@ -17,9 +17,25 @@ const postDataStart = (state) => {
 };
 
 const postDataSuccess = (state, action) => {
-  const newState = {
+  const year = +action.data.date.substr(0, 4);
+  const month = action.data.date.substr(5, 2);
+  const { currentMonth, currentYear } = action;
+
+  let newBudget;
+  let newState;
+
+  newState = {
     loading: false,
   };
+
+  if (currentMonth === month && currentYear === year) {
+    newBudget = state.budget.concat(action.data);
+
+    newState = {
+      loading: false,
+      budget: newBudget,
+    };
+  }
 
   return copy(state, newState);
 };

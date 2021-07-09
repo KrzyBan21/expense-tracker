@@ -47,3 +47,9 @@ export const changeCategory = () => {
     type: actionTypes.CHANGE_CATEGORY,
   };
 };
+
+export const resetCategory = () => {
+  return {
+    type: actionTypes.RESET_CATEGORY,
+  };
+};

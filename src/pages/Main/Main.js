@@ -11,7 +11,7 @@ import Chart from "../../components/Chart/Chart";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
-const Main = ({ currentYear, currentMonth, onGetBudgetData }) => {
+const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const onMenuOpen = () => {
@@ -40,12 +40,12 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData }) => {
       </div>
       <div className="main-content__chart main-content--income">
         <Container>
-          <Chart />
+          <Chart type="income" budget={budget} />
         </Container>
       </div>
       <div className="main-content__chart main-content--expense">
         <Container>
-          <Chart />
+          <Chart type="expense" budget={budget} />
         </Container>
       </div>
     </div>
@@ -56,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     currentYear: state.month.currentYear,
     currentMonth: state.month.currentMonthStr,
+    budget: state.main.budget,
   };
 };
 
