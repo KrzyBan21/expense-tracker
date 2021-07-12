@@ -1,5 +1,12 @@
-const useBudget = (type, budget) => {
-  const arrOfType = budget.filter((el) => el.type === type);
+const useBudgetToChart = (type, budget) => {
+  const arrCopy = [];
+
+  budget.forEach((el) => {
+    const newObj = { ...el };
+    arrCopy.push(newObj);
+  });
+
+  const arrOfType = arrCopy.filter((el) => el.type === type);
 
   const noDuplicatesArr = arrOfType.filter(
     (v, i, a) => a.findIndex((t) => t.category === v.category) === i
@@ -29,4 +36,4 @@ const useBudget = (type, budget) => {
   return { labels, values, colors };
 };
 
-export default useBudget;
+export default useBudgetToChart;
