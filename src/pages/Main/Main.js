@@ -7,6 +7,7 @@ import HamburgerIcon from "../../components/UI/HamburgerIcon/HamburgerIcon";
 import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
 import MainForm from "../../components/MainForm/MainForm";
 import Chart from "../../components/Chart/Chart";
+import NavList from "../../components/NavList/NavList";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
@@ -26,7 +27,12 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
     <div className="main-content">
       <MobileMenu openMenu={openMenu} onMenuOpen={onMenuOpen} />
       <div className="main-content__menu">
-        <HamburgerIcon onMenuOpen={onMenuOpen} />
+        <div className="main-content__menu--hamburger">
+          <HamburgerIcon onMenuOpen={onMenuOpen} />
+        </div>
+        <div className="main-content__menu--navlist">
+          <NavList />
+        </div>
       </div>
       <div className="main-content__month">
         <Container>

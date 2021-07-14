@@ -29,16 +29,34 @@
   }
 
   &__menu {
-    padding: 3rem 2rem;
+    // padding: 3rem 2rem;
+    // display: flex;
     position: absolute;
-    left: 1rem;
-    top: 1rem;
+    left: 3rem;
+    top: 3rem;
+
+    &--hamburger {
+      display: block;
+
+      @media (min-width: $desktop) {
+        display: none;
+      }
+    }
+
+    &--navlist {
+      display: none;
+
+      @media (min-width: $desktop) {
+        display: block;
+      }
+    }
   }
 
   &__month {
     margin: 1.5rem;
-    align-self: center;
-    margin-top: 8rem;
+    align-self: flex-start;
+    margin-top: 5rem;
+    // align-self: flex-end;
 
     @media (min-width: $tablet) {
       grid-column: col-start 2 / col-end 7;
