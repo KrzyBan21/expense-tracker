@@ -1,23 +1,95 @@
+@import "../../sass/base.scss";
+
 .main-content {
   width: 100%;
   height: 100%;
-  grid-template-rows: 1fr 2fr 8fr 4fr 4fr;
+  display: grid;
+  grid-template-rows: auto 3fr 3fr 3fr;
+
+  overflow: auto;
+  padding-bottom: 1.5rem;
+
+  @media (min-width: $tablet) {
+    grid-template-columns:
+      [space-left-start] 1fr [space-left-end main-start] repeat(
+        8,
+        [col-start] 2fr [col-end]
+      )
+      [main-end space-right-start] 1fr [space-right-end];
+    grid-template-rows: auto;
+  }
+
+  @media (min-width: $desktop) {
+    grid-template-columns:
+      [space-left-start] 1fr [space-left-end main-start] repeat(
+        9,
+        [col-start] 2fr [col-end]
+      )
+      [main-end space-right-start] 1fr [space-right-end];
+  }
 
   &__menu {
     padding: 3rem 2rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
   }
 
   &__month {
     margin: 1.5rem;
+    align-self: center;
+    margin-top: 8rem;
+
+    @media (min-width: $tablet) {
+      grid-column: col-start 2 / col-end 7;
+    }
+
+    @media (min-width: $desktop) {
+      grid-column: col-start 3 / col-end 7;
+    }
   }
 
   &__form {
     color: black;
     margin: 1.5rem;
+    align-self: flex-start;
+
+    @media (min-width: $tablet) {
+      grid-column: col-start 2 / col-end 7;
+    }
+
+    @media (min-width: $desktop) {
+      grid-column: col-start 4 / col-end 6;
+    }
   }
 
   &__chart {
     color: black;
     margin: 1.5rem;
+    align-self: flex-start;
+
+    @media (min-width: $desktop) {
+      grid-row: 2/2;
+    }
+  }
+
+  @media (min-width: $tablet) {
+    &--income {
+      grid-column: col-start 2 / col-end 7;
+    }
+
+    &--expense {
+      grid-column: col-start 2 / col-end 7;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    &--income {
+      grid-column: col-start 1 / col-end 3;
+    }
+
+    &--expense {
+      grid-column: col-start 7 / col-end 9;
+    }
   }
 }

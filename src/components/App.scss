@@ -1,15 +1,13 @@
 @import "../sass/base.scss";
 
 .app {
-  // width: 100vw;
-  // height: 100vh;
-
   min-height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; //to remove
+  position: relative;
 }
 
 .background {

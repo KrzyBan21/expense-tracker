@@ -24,7 +24,7 @@ const Chart = React.memo(({ type, budget, title }) => {
     <div className="chart">
       <h3 className="chart__title">{title}</h3>
       <p className="chart__sum">{sum > 0 ? "Total: " + sum : null}</p>
-      <div className='chart__pie'>
+      <div className="chart__pie">
         <Pie data={data} />
       </div>
     </div>
