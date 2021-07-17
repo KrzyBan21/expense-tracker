@@ -7,23 +7,23 @@ import MainForm from "../../../components/MainForm/MainForm";
 
 const Summary = ({ budget }) => {
   return (
-    <React.Fragment>
-      <div className="main-content__form">
+    <div className="summary">
+      <div className="summary__form">
         <Container>
           <MainForm />
         </Container>
       </div>
-      <div className="main-content__chart main-content--income">
+      <div className="summary__chart summary--income">
         <Container>
           <Chart type="income" budget={budget} title="Incomes" />
         </Container>
       </div>
-      <div className="main-content__chart main-content--expense">
+      <div className="summary__chart summary--expense">
         <Container>
           <Chart type="expense" budget={budget} title="Expenses" />
         </Container>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

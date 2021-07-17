@@ -1,28 +1,17 @@
 @import "../../sass/base.scss";
 
 .main-content {
-  width: 100%;
-  height: 100%;
+  width: 95%;
   display: grid;
-  grid-template-rows: auto;
+  justify-items: center;
   padding-bottom: 1.5rem;
 
   @media (min-width: $tablet) {
-    grid-template-columns:
-      [space-left-start] 1fr [space-left-end main-start] repeat(
-        8,
-        [col-start] 2fr [col-end]
-      )
-      [main-end space-right-start] 1fr [space-right-end];
+    width: 80%;
   }
 
   @media (min-width: $desktop) {
-    grid-template-columns:
-      [space-left-start] 1fr [space-left-end main-start] repeat(
-        9,
-        [col-start] 2fr [col-end]
-      )
-      [main-end space-right-start] 1fr [space-right-end];
+    grid-template-columns: 1fr [main-start] 9fr [main-end] 1fr;
   }
 
   &__menu {
@@ -51,57 +40,10 @@
     margin: 1.5rem;
     align-self: flex-start;
     margin-top: 8rem;
-
-    @media (min-width: $tablet) {
-      grid-column: col-start 2 / col-end 7;
-    }
+    width: 100%;
 
     @media (min-width: $desktop) {
-      grid-column: col-start 3 / col-end 7;
-    }
-  }
-
-  &__form {
-    color: black;
-    margin: 1.5rem;
-
-    @media (min-width: $tablet) {
-      grid-column: col-start 2 / col-end 7;
-    }
-
-    @media (min-width: $desktop) {
-      grid-column: col-start 4 / col-end 6;
-      align-self: flex-start;
-    }
-  }
-
-  &__chart {
-    color: black;
-    margin: 1.5rem;
-    align-self: flex-start;
-
-    @media (min-width: $desktop) {
-      grid-row: 2/2;
-    }
-  }
-
-  @media (min-width: $tablet) {
-    &--income {
-      grid-column: col-start 2 / col-end 7;
-    }
-
-    &--expense {
-      grid-column: col-start 2 / col-end 7;
-    }
-  }
-
-  @media (min-width: $desktop) {
-    &--income {
-      grid-column: col-start 1 / col-end 3;
-    }
-
-    &--expense {
-      grid-column: col-start 7 / col-end 9;
+      grid-column: main-start/main-end;
     }
   }
 }

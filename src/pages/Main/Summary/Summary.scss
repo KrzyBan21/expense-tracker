@@ -1,0 +1,80 @@
+@import "../../../sass/base.scss";
+
+.summary {
+  width: 100%;
+  //   height: 100%;
+  display: grid;
+  grid-row: 2/2;
+  grid-column: 1/-1;
+  grid-column-gap: 1rem;
+  //   grid-template-rows: auto;
+  //   padding-bottom: 1.5rem;
+
+  @media (min-width: $tablet) {
+    // width: 80%;
+    // grid-template-columns:
+    //   [space-left-start] 1fr [space-left-end main-start] repeat(
+    //     8,
+    //     [col-start] 2fr [col-end]
+    //   )
+    //   [main-end space-right-start] 1fr [space-right-end];
+  }
+
+  @media (min-width: $desktop) {
+    grid-template-columns: repeat(12, [col-start] 1fr [col-end]);
+    //   [space-left-start] 1fr [space-left-end main-start] repeat(
+    //     9,
+    //     [col-start] 1fr [col-end]
+    //   )
+    //   [main-end space-right-start] 1fr [space-right-end];
+  }
+
+  &__form {
+    color: black;
+    margin: 1.5rem 0;
+
+    // width: 100%;
+    // align-self: center;
+    // justify-self: center;
+
+    // @media (min-width: $tablet) {
+    //   grid-column: col-start 2 / col-end 7;
+    // }
+
+    @media (min-width: $desktop) {
+      grid-column: col-start 5 / col-end 8;
+      grid-row: 2/2;
+      //   align-self: flex-start;
+    }
+  }
+
+  &__chart {
+    color: black;
+    margin: 1.5rem 0;
+    align-self: flex-start;
+
+    @media (min-width: $desktop) {
+      grid-row: 2/2;
+    }
+  }
+
+  //   @media (min-width: $tablet) {
+  //     &--income {
+  //       grid-column: col-start 2 / col-end 7;
+  //     }
+
+  //     &--expense {
+  //       grid-column: col-start 2 / col-end 7;
+  //     }
+  //   }
+
+  @media (min-width: $desktop) {
+    &--income {
+      grid-column: col-start 1 / col-end 4;
+    }
+
+    &--expense {
+      grid-column: col-start 9 / col-end 12;
+    }
+  }
+}
