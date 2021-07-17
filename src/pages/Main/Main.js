@@ -46,12 +46,12 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
       </div>
       <div className="main-content__chart main-content--income">
         <Container>
-          <Chart type="income" budget={budget} title="Income" />
+          <Chart type="income" budget={budget} title="Incomes" />
         </Container>
       </div>
       <div className="main-content__chart main-content--expense">
         <Container>
-          <Chart type="expense" budget={budget} title="Expense" />
+          <Chart type="expense" budget={budget} title="Expenses" />
         </Container>
       </div>
     </div>

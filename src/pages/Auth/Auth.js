@@ -8,7 +8,7 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-const authTypes = ["Sign In", "Log In"];
+const authTypes = ["Sign Up", "Sign In"];
 
 const Auth = ({ token, loading, categoriesLoading }) => {
   const [authType, setAuthType] = useState(authTypes[0]);

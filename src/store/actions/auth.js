@@ -36,7 +36,7 @@ export const auth = (email, password, signIn) => {
 
       let url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDzRGkyljD5wZexUwBvSbEaG1SPVVCNP0o";
-      if (signIn === "Log In") {
+      if (signIn === "Sign In") {
         url =
           "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDzRGkyljD5wZexUwBvSbEaG1SPVVCNP0o";
       }
