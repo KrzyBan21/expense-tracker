@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./Main.scss";
 
 import Container from "../../components/Container/Container";
 import CurrentMonth from "../../components/CurrentMonth/CurrentMonth";
 import HamburgerIcon from "../../components/UI/HamburgerIcon/HamburgerIcon";
 import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
-import MainForm from "../../components/MainForm/MainForm";
-import Chart from "../../components/Chart/Chart";
 import NavList from "../../components/NavList/NavList";
+import Summary from "./Summary/Summary";
+import History from "./History/History";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
@@ -39,21 +40,16 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
           <CurrentMonth />
         </Container>
       </div>
-      <div className="main-content__form">
-        <Container>
-          <MainForm />
-        </Container>
-      </div>
-      <div className="main-content__chart main-content--income">
-        <Container>
-          <Chart type="income" budget={budget} title="Incomes" />
-        </Container>
-      </div>
-      <div className="main-content__chart main-content--expense">
-        <Container>
-          <Chart type="expense" budget={budget} title="Expenses" />
-        </Container>
-      </div>
+
+      <Switch>
+        <Route
+          path="/main/summary"
+          exact
+          render={() => <Summary budget={budget} />}
+        />
+        <Route path="/main/history" render={() => <History />} exact />
+        <Redirect to="/main/summary" />
+      </Switch>
     </div>
   );
 };

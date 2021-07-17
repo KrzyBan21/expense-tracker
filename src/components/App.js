@@ -22,7 +22,7 @@ const App = ({ token, onAuthCheckState }) => {
       <div className="app">
         <Switch>
           <Route path="/auth" render={() => <Auth />} />
-          {token && <Route path="/main" render={() => <Main />} />}
+          {token && <Route path="/main" render={() => <Main />}/>}
           {/* <Route path="/main" render={() => <Main />} /> */}
           <Redirect to="/auth" />
         </Switch>

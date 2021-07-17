@@ -10,7 +10,7 @@ const MobileMenu = ({ openMenu, onMenuOpen }) => {
   return (
     <Fragment>
       <div className={"mobile-menu" + styleName}>
-        <NavList />
+        <NavList onMenuOpen={onMenuOpen}/>
       </div>
       {openMenu && <Backdrop onMenuOpen={onMenuOpen} />}
     </Fragment>
