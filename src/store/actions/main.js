@@ -104,3 +104,11 @@ export const getBudgetData = (year, month) => {
     }
   };
 };
+
+
+export const changeType = (budgetType) => {
+  return {
+    type: actionTypes.CHANGE_TYPE,
+    budgetType
+  }
+}

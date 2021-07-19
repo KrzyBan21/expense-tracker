@@ -9,6 +9,7 @@
 
   @media (min-width: $desktop) {
     grid-template-columns: repeat(12, [col-start] 1fr [col-end]);
+    align-items: flex-start;
   }
 
   &__form {

@@ -1,0 +1,31 @@
+.type-switcher {
+  width: 100%;
+  color: black;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+
+  &__expenses {
+    width: 100%;
+    grid-column: 1/1;
+  }
+
+  &__incomes {
+    width: 100%;
+    grid-column: 2/2;
+  }
+
+  &--active {
+    background-color: #006eff;
+    color: white;
+  }
+}

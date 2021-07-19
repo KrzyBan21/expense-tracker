@@ -5,6 +5,8 @@
   display: grid;
   justify-items: center;
   padding-bottom: 1.5rem;
+  grid-template-rows: auto 5fr 1fr;
+  height: 100vh;
 
   @media (min-width: $tablet) {
     width: 80%;
@@ -38,7 +40,7 @@
 
   &__month {
     margin: 1.5rem;
-    align-self: flex-start;
+    align-self: flex-end;
     margin-top: 8rem;
     width: 100%;
 

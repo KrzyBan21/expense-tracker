@@ -5,6 +5,15 @@ const initialState = {
   error: null,
   loading: false,
   budget: [],
+  budgetType: "expense",
+};
+
+const changeType = (state, action) => {
+  const newState = {
+    budgetType: action.budgetType,
+  };
+
+  return copy(state, newState);
 };
 
 const postDataStart = (state) => {
@@ -102,6 +111,8 @@ const reducer = (state = initialState, action) => {
       return getBudgetDataSuccess(state, action);
     case actionTypes.GET_BUDGET_DATA_FAIL:
       return getBudgetDataFail(state, action);
+    case actionTypes.CHANGE_TYPE:
+      return changeType(state, action);
     default:
       return state;
   }

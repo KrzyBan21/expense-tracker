@@ -9,7 +9,7 @@ const HistoryItem = ({ type, category, amount, date }) => {
       <div className="history-item__delete">
         <RiDeleteBin6Line />
       </div>
-      <p className="history-item__type">{type}</p>
+      {/* <p className="history-item__type">{type}</p> */}
       <p className="history-item__category">{category}</p>
       <p className="history-item__amount">{amount}</p>
       <p className="history-item__date">{date}</p>
