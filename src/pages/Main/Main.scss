@@ -11,7 +11,7 @@
   }
 
   @media (min-width: $desktop) {
-    grid-template-columns: 1fr [main-start] 9fr [main-end] 1fr;
+    grid-template-columns: 1fr [main-start] 4fr [main-end] 1fr;
   }
 
   &__menu {

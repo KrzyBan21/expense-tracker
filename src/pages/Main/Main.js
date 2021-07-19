@@ -47,7 +47,11 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
           exact
           render={() => <Summary budget={budget} />}
         />
-        <Route path="/main/history" render={() => <History />} exact />
+        <Route
+          path="/main/history"
+          render={() => <History budget={budget} />}
+          exact
+        />
         <Redirect to="/main/summary" />
       </Switch>
     </div>

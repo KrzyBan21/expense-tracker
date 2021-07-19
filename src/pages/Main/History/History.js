@@ -1,11 +1,16 @@
 import React from "react";
 import "./History.scss";
 
-const History = () => {
+import Container from "../../../components/Container/Container";
+import HistoryList from "../../../components/HistoryList/HistoryList";
+
+const History = ({ budget }) => {
   return (
-    <React.Fragment>
-      <div>History</div>
-    </React.Fragment>
+    <div className="history">
+      <Container scroll={true}>
+        <HistoryList budget={budget} />
+      </Container>
+    </div>
   );
 };
 
