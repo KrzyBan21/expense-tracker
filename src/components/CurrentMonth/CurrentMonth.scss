@@ -1,19 +1,19 @@
-.current-month{
-    width: 100%;
-    height: 100%;
-    color: black;
+.current-month {
+  width: 100%;
+  height: 100%;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+
+  &__icon {
+    font-size: 4.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
+    cursor: pointer;
+  }
 
-    &__icon{
-        font-size: 4.5rem;
-        display: flex;
-        cursor: pointer;
-    }
-
-    &__month{
-
-    }
+  &__month {
+    cursor: pointer;
+  }
 }

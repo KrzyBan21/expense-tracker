@@ -1,0 +1,14 @@
+.modal {
+  z-index: 2000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  transition: all 0.2s ease-in;
+  opacity: 0;
+
+  &--animation {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}

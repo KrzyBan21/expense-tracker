@@ -9,15 +9,22 @@ import MobileMenu from "../../components/UI/MobileMenu/MobileMenu";
 import NavList from "../../components/NavList/NavList";
 import Summary from "./Summary/Summary";
 import History from "./History/History";
+import Modal from "../../components/UI/Modal/Modal";
+import AggregationData from "../../components/AggregationData/AggregationData";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const onMenuOpen = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const onModalOpen = () => {
+    setModalOpen(!modalOpen);
   };
 
   useEffect(() => {
@@ -35,9 +42,12 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
           <NavList />
         </div>
       </div>
+      <Modal modalOpen={modalOpen} onModalOpen={onModalOpen}>
+        <AggregationData />
+      </Modal>
       <div className="main-content__month">
         <Container>
-          <CurrentMonth />
+          <CurrentMonth onModalOpen={onModalOpen} />
         </Container>
       </div>
 

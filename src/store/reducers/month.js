@@ -27,6 +27,15 @@ const initialState = {
   currentYear: new Date().getFullYear(),
   currentFullMonth: months[new Date().getMonth()],
   currentMonthStr: monthToStr(new Date().getMonth()),
+  dataAggregation: "month",
+};
+
+const changeDataAggregation = (state, action) => {
+  const newState = {
+    dataAggregation: action.dataAggregation,
+  };
+
+  return copy(state, newState);
 };
 
 const nextMonth = (state, action) => {
@@ -85,6 +94,8 @@ const reducer = (state = initialState, action) => {
       return nextMonth(state);
     case actionTypes.PREVIOUS_MONTH:
       return previousMonth(state);
+    case actionTypes.CHANGE_DATA_AGGREGATION:
+      return changeDataAggregation(state, action);
     default:
       return state;
   }

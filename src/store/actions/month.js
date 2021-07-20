@@ -11,3 +11,10 @@ export const previousMonth = () => {
     type: actionTypes.PREVIOUS_MONTH,
   };
 };
+
+export const changeDataAggregation = (dataAggregation) => {
+  return {
+    type: actionTypes.CHANGE_DATA_AGGREGATION,
+    dataAggregation, //day, month, year; default month
+  };
+};
