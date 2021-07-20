@@ -7,7 +7,8 @@
   justify-items: center;
   margin-bottom: 1rem;
   border-radius: 10px;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
@@ -22,6 +23,11 @@
   &__incomes {
     width: 100%;
     grid-column: 2/2;
+  }
+
+  &__text {
+    padding: 1.2rem 0;
+    display: block;
   }
 
   &--active {

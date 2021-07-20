@@ -12,18 +12,19 @@ const TypeSwitcher = ({ budgetType, onChangeType }) => {
 
   return (
     <div className="type-switcher">
-      <p
+      <div
         className={"type-switcher__expenses" + activeExpenseClass}
         onClick={() => onChangeType("expense")}
       >
-        Expenses
-      </p>
-      <p
+        <p className="type-switcher__text">Expenses</p>
+      </div>
+
+      <div
         className={"type-switcher__incomes" + activeIncomeClass}
         onClick={() => onChangeType("income")}
       >
-        Incomes
-      </p>
+        <p className="type-switcher__text">Incomes</p>
+      </div>
     </div>
   );
 };

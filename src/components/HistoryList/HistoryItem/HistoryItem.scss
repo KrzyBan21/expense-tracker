@@ -13,21 +13,37 @@
     &:hover {
       color: red;
     }
+    &--header:hover {
+      color: black;
+      cursor: auto;
+    }
   }
 
   &__category {
     grid-column: 2/2;
+
+    &--header {
+      font-weight: 700;
+    }
   }
 
   &__amount {
     grid-column: 3/3;
+
+    &--header {
+      font-weight: 700;
+    }
   }
 
   &__date {
     grid-column: 4/4;
+
+    &--header {
+      font-weight: 700;
+    }
   }
 
-  &:not(:last-child){
+  &:not(:last-child) {
     border-bottom: solid 1px #006eff;
     padding-bottom: 1rem;
   }

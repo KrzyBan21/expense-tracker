@@ -22,7 +22,6 @@ const HistoryList = ({ budget, budgetType }) => {
   const historyItems = sortedList.map((item) => (
     <HistoryItem
       key={item.id}
-      type={item.type}
       category={item.category}
       amount={item.amount}
       date={item.date}
@@ -32,14 +31,15 @@ const HistoryList = ({ budget, budgetType }) => {
 
   return (
     <ul className="history-list">
+      {historyItems.length > 0 ? (
+        <HistoryItem
+          category="Category"
+          amount="Amount"
+          date="Date"
+          isHeader={true}
+        />
+      ) : null}
       {historyItems}
-      {/* <HistoryItem />
-      <HistoryItem />
-      <HistoryItem />
-      <HistoryItem />
-      <HistoryItem />
-      <HistoryItem />
-      <HistoryItem /> */}
     </ul>
   );
 };
