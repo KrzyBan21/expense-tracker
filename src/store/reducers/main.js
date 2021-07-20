@@ -3,9 +3,40 @@ import { copy } from "../utils";
 
 const initialState = {
   error: null,
+  deleteError: null,
   loading: false,
+  deleteLoading: false,
   budget: [],
   budgetType: "expense",
+};
+
+const deleteDataStart = (state) => {
+  const newState = {
+    deleteError: null,
+    deleteLoading: true,
+  };
+
+  return copy(state, newState);
+};
+
+const deleteDataSuccess = (state, action) => {
+  const newBudget = [...state.budget].filter((el) => el.id !== action.id);
+
+  const newState = {
+    loading: false,
+    budget: newBudget,
+  };
+
+  return copy(state, newState);
+};
+
+const deleteDataFail = (state, action) => {
+  const newState = {
+    deleteError: action.error,
+    deleteLoading: false,
+  };
+
+  return copy(state, newState);
 };
 
 const changeType = (state, action) => {
@@ -123,6 +154,13 @@ const reducer = (state = initialState, action) => {
       return getBudgetDataFail(state, action);
     case actionTypes.CHANGE_TYPE:
       return changeType(state, action);
+
+    case actionTypes.DELETE_DATA_START:
+      return deleteDataStart(state, action);
+    case actionTypes.DELETE_DATA_SUCCESS:
+      return deleteDataSuccess(state, action);
+    case actionTypes.DELETE_DATA_FAIL:
+      return deleteDataFail(state, action);
     default:
       return state;
   }

@@ -3,10 +3,16 @@ import "./HistoryItem.scss";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const HistoryItem = ({ type, category, amount, date }) => {
+import * as actions from "../../../store/actions/index";
+import { connect } from "react-redux";
+
+const HistoryItem = ({ type, category, amount, date, id, onDeleteData }) => {
   return (
     <li className="history-item">
-      <div className="history-item__delete">
+      <div
+        className="history-item__delete"
+        onClick={() => onDeleteData(id, date)}
+      >
         <RiDeleteBin6Line />
       </div>
       {/* <p className="history-item__type">{type}</p> */}
@@ -17,4 +23,11 @@ const HistoryItem = ({ type, category, amount, date }) => {
   );
 };
 
-export default HistoryItem;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteData: (id, budgdetDate) =>
+      dispatch(actions.deleteData(id, budgdetDate)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(HistoryItem);

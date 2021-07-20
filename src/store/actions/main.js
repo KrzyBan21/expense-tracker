@@ -54,7 +54,7 @@ export const postData = (
           auth: token,
         },
       });
-      createdObj.id = response.data.name
+      createdObj.id = response.data.name;
       dispatch(postDataSuccess(createdObj, currentMonth, currentYear));
     } catch (e) {
       dispatch(postDataFail(e));
@@ -105,10 +105,56 @@ export const getBudgetData = (year, month) => {
   };
 };
 
-
 export const changeType = (budgetType) => {
   return {
     type: actionTypes.CHANGE_TYPE,
-    budgetType
-  }
-}
+    budgetType,
+  };
+};
+
+const deleteDataStart = () => {
+  return {
+    type: actionTypes.DELETE_DATA_START,
+  };
+};
+
+const deleteDataSuccess = (id) => {
+  return {
+    type: actionTypes.DELETE_DATA_SUCCESS,
+    id,
+  };
+};
+
+const deleteDataFail = (error) => {
+  return {
+    type: actionTypes.DELETE_DATA_FAIL,
+    error,
+  };
+};
+
+export const deleteData = (id, budgetDate) => {
+  return async (dispatch) => {
+    try {
+      dispatch(deleteDataStart());
+
+      const { year, month, day } = stringToDateObj(budgetDate);
+
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
+      const url = `budget/${userId}/${year}/${month}/${day}/${id}.json`;
+
+      await firebase.delete(url, {
+        params: {
+          auth: token,
+        },
+      });
+
+      dispatch(deleteDataSuccess(id));
+
+      // console.log(response);
+    } catch (e) {
+      dispatch(deleteDataFail(e));
+    }
+  };
+};

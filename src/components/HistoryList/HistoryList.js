@@ -19,13 +19,14 @@ const HistoryList = ({ budget, budgetType }) => {
     .reverse()
     .filter((item) => item.type === budgetType);
 
-  const historyItems = sortedList.map((item, index) => (
+  const historyItems = sortedList.map((item) => (
     <HistoryItem
-      key={index}
+      key={item.id}
       type={item.type}
       category={item.category}
       amount={item.amount}
       date={item.date}
+      id={item.id}
     />
   ));
 
