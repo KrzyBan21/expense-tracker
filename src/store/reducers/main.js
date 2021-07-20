@@ -73,9 +73,19 @@ const getBudgetDataSuccess = (state, action) => {
     Object.values(el)
   );
 
+  const arrayOfArraysKeys = Object.values(action.budget).map((el) =>
+    Object.keys(el)
+  );
+
   const arrOfBudget = arrayOfArrays.reduce((previousValue, currentValue) => {
     return previousValue.concat(currentValue);
   }, []);
+
+  const arrOfKeys = arrayOfArraysKeys.reduce((previousValue, currentValue) => {
+    return previousValue.concat(currentValue);
+  }, []);
+
+  arrOfBudget.forEach((el, indx) => (el.id = arrOfKeys[indx]));
 
   const newBudget = copy(state.budget, arrOfBudget);
 

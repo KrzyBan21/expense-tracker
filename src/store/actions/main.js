@@ -49,12 +49,12 @@ export const postData = (
 
       const url = `budget/${userId}/${year}/${month}/${day}/.json`;
 
-      await firebase.post(url, createdObj, {
+      const response = await firebase.post(url, createdObj, {
         params: {
           auth: token,
         },
       });
-      // console.log(response);
+      createdObj.id = response.data.name
       dispatch(postDataSuccess(createdObj, currentMonth, currentYear));
     } catch (e) {
       dispatch(postDataFail(e));
@@ -97,7 +97,7 @@ export const getBudgetData = (year, month) => {
           auth: token,
         },
       });
-      // console.log(budget.data);
+      console.log(budget.data);
       dispatch(getBudgetDataSuccess(budget.data));
     } catch (e) {
       dispatch(getBudgetDataFail(e));
