@@ -1,14 +1,16 @@
 import * as actionTypes from "./actionTypes";
 
-export const nextMonth = () => {
+export const nextMonth = (aggregation) => {
   return {
     type: actionTypes.NEXT_MONTH,
+    aggregation,
   };
 };
 
-export const previousMonth = () => {
+export const previousMonth = (aggregation) => {
   return {
     type: actionTypes.PREVIOUS_MONTH,
+    aggregation,
   };
 };
 

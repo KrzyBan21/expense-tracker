@@ -68,10 +68,11 @@ const getBudgetDataStart = () => {
   };
 };
 
-const getBudgetDataSuccess = (budget) => {
+const getBudgetDataSuccess = (budget, aggregation) => {
   return {
     type: actionTypes.GET_BUDGET_DATA_SUCCESS,
     budget,
+    aggregation,
   };
 };
 
@@ -82,7 +83,7 @@ const getBudgetDataFail = (error) => {
   };
 };
 
-export const getBudgetData = (year, month) => {
+export const getBudgetData = (year, month, day, aggregation) => {
   return async (dispatch) => {
     try {
       dispatch(getBudgetDataStart());
@@ -90,7 +91,22 @@ export const getBudgetData = (year, month) => {
       const userId = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
 
-      const url = `budget/${userId}/${year}/${month}/.json`;
+      let url;
+
+      switch (aggregation) {
+        case "day":
+          url = `budget/${userId}/${year}/${month}/${day}.json`;
+          break;
+        case "month":
+          url = `budget/${userId}/${year}/${month}.json`;
+          break;
+        case "year":
+          url = `budget/${userId}/${year}.json`;
+          break;
+        default:
+          url = `budget/${userId}/${year}/${month}.json`;
+          break;
+      }
 
       const budget = await firebase.get(url, {
         params: {
@@ -98,7 +114,7 @@ export const getBudgetData = (year, month) => {
         },
       });
       console.log(budget.data);
-      dispatch(getBudgetDataSuccess(budget.data));
+      dispatch(getBudgetDataSuccess(budget.data, aggregation));
     } catch (e) {
       dispatch(getBudgetDataFail(e));
     }

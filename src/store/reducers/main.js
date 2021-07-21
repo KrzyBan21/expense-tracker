@@ -100,23 +100,52 @@ const getBudgetDataStart = (state) => {
 };
 
 const getBudgetDataSuccess = (state, action) => {
-  const arrayOfArrays = Object.values(action.budget).map((el) =>
-    Object.values(el)
-  );
+  let budget,
+    yearArrOfArrays,
+    yearArr,
+    arrayOfArrays,
+    arrayOfArraysKeys,
+    arrOfBudget,
+    arrOfKeys;
 
-  const arrayOfArraysKeys = Object.values(action.budget).map((el) =>
-    Object.keys(el)
-  );
+  budget = { ...action.budget };
 
-  const arrOfBudget = arrayOfArrays.reduce((previousValue, currentValue) => {
-    return previousValue.concat(currentValue);
-  }, []);
+  if (action.aggregation === "year") {
+    yearArrOfArrays = Object.values(budget).map((el) => Object.values(el));
 
-  const arrOfKeys = arrayOfArraysKeys.reduce((previousValue, currentValue) => {
-    return previousValue.concat(currentValue);
-  }, []);
+    yearArr = yearArrOfArrays.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue);
+    }, []);
 
-  arrOfBudget.forEach((el, indx) => (el.id = arrOfKeys[indx]));
+    budget = { ...yearArr };
+  }
+
+  if (action.aggregation === "year" || action.aggregation === "month") {
+    arrayOfArrays = Object.values(budget).map((el) => Object.values(el));
+
+    arrayOfArraysKeys = Object.values(budget).map((el) => Object.keys(el));
+
+    arrOfBudget = arrayOfArrays.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue);
+    }, []);
+
+    arrOfKeys = arrayOfArraysKeys.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue);
+    }, []);
+  }
+
+  if (
+    action.aggregation === "year" ||
+    action.aggregation === "month" ||
+    action.aggregation === "day"
+  ) {
+    if (action.aggregation === "day") {
+      arrOfBudget = Object.values(budget).map((el) => el);
+      arrOfKeys = Object.keys(budget).map((el) => el);
+    }
+
+    arrOfBudget.forEach((el, indx) => (el.id = arrOfKeys[indx]));
+  }
 
   const newBudget = copy(state.budget, arrOfBudget);
 

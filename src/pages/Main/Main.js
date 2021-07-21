@@ -15,7 +15,14 @@ import AggregationData from "../../components/AggregationData/AggregationData";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
-const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
+const Main = ({
+  currentYear,
+  currentMonth,
+  currentDay,
+  aggregation,
+  onGetBudgetData,
+  budget,
+}) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -28,8 +35,8 @@ const Main = ({ currentYear, currentMonth, onGetBudgetData, budget }) => {
   };
 
   useEffect(() => {
-    onGetBudgetData(currentYear, currentMonth);
-  }, [currentYear, currentMonth, onGetBudgetData]);
+    onGetBudgetData(currentYear, currentMonth, currentDay, aggregation);
+  }, [currentYear, currentMonth, onGetBudgetData, currentDay, aggregation]);
 
   return (
     <div className="main-content">
@@ -72,14 +79,16 @@ const mapStateToProps = (state) => {
   return {
     currentYear: state.month.currentYear,
     currentMonth: state.month.currentMonthStr,
+    currentDay: state.month.currentDayStr,
     budget: state.main.budget,
+    aggregation: state.month.dataAggregation,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetBudgetData: (year, month) =>
-      dispatch(actions.getBudgetData(year, month)),
+    onGetBudgetData: (year, month, currentDay, aggregation) =>
+      dispatch(actions.getBudgetData(year, month, currentDay, aggregation)),
   };
 };
 

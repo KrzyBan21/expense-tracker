@@ -1,10 +1,10 @@
 import * as actionTypes from "../actions/actionTypes";
 import { copy } from "../utils";
 
-const monthToStr = (monthNr) => {
-  return (monthNr + 1).toString().length === 1
-    ? "0" + (monthNr + 1).toString()
-    : (monthNr + 1).toString();
+const addLeadingZero = (nr, type) => {
+  const num = type === "month" ? nr + 1 : nr;
+
+  return num.toString().length === 1 ? "0" + num.toString() : num.toString();
 };
 
 const months = [
@@ -26,7 +26,9 @@ const initialState = {
   currentMonth: new Date().getMonth(),
   currentYear: new Date().getFullYear(),
   currentFullMonth: months[new Date().getMonth()],
-  currentMonthStr: monthToStr(new Date().getMonth()),
+  currentMonthStr: addLeadingZero(new Date().getMonth(), "month"),
+  currentDay: new Date().getDate(),
+  currentDayStr: addLeadingZero(new Date().getDate()),
   dataAggregation: "month",
 };
 
@@ -38,51 +40,119 @@ const changeDataAggregation = (state, action) => {
   return copy(state, newState);
 };
 
-const nextMonth = (state, action) => {
-  let currentMonth, currentYear, currentFullMonth, currentMonthStr;
+const nextDate = (state, action) => {
+  let currentMonth,
+    currentYear,
+    currentFullMonth,
+    currentMonthStr,
+    currentDay,
+    currentDayStr;
 
   currentYear = state.currentYear;
+  currentDay = state.currentDay;
+  currentMonth = state.currentMonth;
 
-  if (state.currentMonth === 11) {
-    currentMonth = 0;
-    currentYear = state.currentYear + 1;
-  } else {
-    currentMonth = state.currentMonth + 1;
+  const numberOfDays = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+  switch (action.aggregation) {
+    case "day":
+      if (currentDay === numberOfDays) {
+        currentDay = 1;
+        if (currentMonth === 11) {
+          currentMonth = 0;
+          currentYear = currentYear + 1;
+        } else {
+          currentMonth = currentMonth + 1;
+        }
+      } else {
+        currentDay = currentDay + 1;
+      }
+      break;
+    case "month":
+      if (currentMonth === 11) {
+        currentMonth = 0;
+        currentYear = currentYear + 1;
+      } else {
+        currentMonth = currentMonth + 1;
+      }
+      break;
+    case "year":
+      currentYear = currentYear + 1;
+      break;
+    default:
+      break;
   }
 
   currentFullMonth = months[currentMonth];
-  currentMonthStr = monthToStr(currentMonth);
+  currentMonthStr = addLeadingZero(currentMonth, "month");
+  currentDayStr = addLeadingZero(currentDay);
 
   const newState = {
     currentMonth,
     currentYear,
     currentFullMonth,
     currentMonthStr,
+    currentDay,
+    currentDayStr,
   };
 
   return copy(state, newState);
 };
 
-const previousMonth = (state) => {
-  let currentMonth, currentYear, currentFullMonth, currentMonthStr;
+const previousDate = (state, action) => {
+  let currentMonth,
+    currentYear,
+    currentFullMonth,
+    currentMonthStr,
+    currentDay,
+    currentDayStr;
 
   currentYear = state.currentYear;
+  currentDay = state.currentDay;
+  currentMonth = state.currentMonth;
 
-  if (state.currentMonth === 0) {
-    currentMonth = 11;
-    currentYear = state.currentYear - 1;
-  } else {
-    currentMonth = state.currentMonth - 1;
+  const numberOfDays = 1;
+
+  switch (action.aggregation) {
+    case "day":
+      if (currentDay === numberOfDays) {
+        currentDay = new Date(currentYear, currentMonth, 0).getDate();
+        if (currentMonth === 0) {
+          currentMonth = 11;
+          currentYear = currentYear - 1;
+        } else {
+          currentMonth = currentMonth - 1;
+        }
+      } else {
+        currentDay = currentDay - 1;
+      }
+      break;
+    case "month":
+      if (currentMonth === 0) {
+        currentMonth = 11;
+        currentYear = currentYear - 1;
+      } else {
+        currentMonth = currentMonth - 1;
+      }
+      break;
+    case "year":
+      currentYear = currentYear - 1;
+      break;
+    default:
+      break;
   }
 
   currentFullMonth = months[currentMonth];
-  currentMonthStr = monthToStr(currentMonth);
+  currentMonthStr = addLeadingZero(currentMonth, "month");
+  currentDayStr = addLeadingZero(currentDay);
 
   const newState = {
     currentMonth,
     currentYear,
     currentFullMonth,
     currentMonthStr,
+    currentDay,
+    currentDayStr,
   };
 
   return copy(state, newState);
@@ -91,9 +161,9 @@ const previousMonth = (state) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.NEXT_MONTH:
-      return nextMonth(state);
+      return nextDate(state, action);
     case actionTypes.PREVIOUS_MONTH:
-      return previousMonth(state);
+      return previousDate(state, action);
     case actionTypes.CHANGE_DATA_AGGREGATION:
       return changeDataAggregation(state, action);
     default:
