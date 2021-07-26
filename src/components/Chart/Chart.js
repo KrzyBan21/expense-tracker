@@ -20,6 +20,9 @@ const Chart = React.memo(({ type, budget, title }) => {
     ],
   };
 
+  const filteredBudget = budget.filter((el) => el.type === type);
+  const noData = filteredBudget.length > 0 ? null : { display: "block" };
+
   return (
     <div className="chart">
       <h3 className="chart__title">{title}</h3>
@@ -27,6 +30,9 @@ const Chart = React.memo(({ type, budget, title }) => {
       <div className="chart__pie">
         <Pie data={data} />
       </div>
+      <p className="chart__no-data" style={noData}>
+        There are no {title}
+      </p>
     </div>
   );
 });

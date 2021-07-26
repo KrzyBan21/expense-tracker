@@ -1,6 +1,7 @@
 .aggregation-data {
   color: black;
   font-size: 2.4rem;
+  padding: 2rem;
 
   &__aggregation {
     display: flex;
@@ -8,6 +9,11 @@
     &-level {
       margin: 1rem;
       cursor: pointer;
+
+      &--active {
+        padding-bottom: 0.5rem;
+        border-bottom: 4px solid #006eff;
+      }
     }
   }
 }

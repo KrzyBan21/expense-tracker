@@ -4,24 +4,43 @@ import "./AggregationData.scss";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
-const AggregationData = ({ onAggregationChange }) => {
+const AggregationData = ({
+  onAggregationChange,
+  onModalOpen,
+  dataAggregation,
+}) => {
+  const dayActive =
+    dataAggregation === "day"
+      ? " aggregation-data__aggregation-level--active"
+      : "";
+
+  const monthActive =
+    dataAggregation === "month"
+      ? " aggregation-data__aggregation-level--active"
+      : "";
+
+  const yearActive =
+    dataAggregation === "year"
+      ? " aggregation-data__aggregation-level--active"
+      : "";
+
   return (
     <div className="aggregation-data">
-      <div className="aggregation-data__aggregation">
+      <div className="aggregation-data__aggregation" onClick={onModalOpen}>
         <div
-          className="aggregation-data__aggregation-level"
+          className={"aggregation-data__aggregation-level" + dayActive}
           onClick={() => onAggregationChange("day")}
         >
           <p>Day</p>
         </div>
         <div
-          className="aggregation-data__aggregation-level"
+          className={"aggregation-data__aggregation-level" + monthActive}
           onClick={() => onAggregationChange("month")}
         >
           <p>Month</p>
         </div>
         <div
-          className="aggregation-data__aggregation-level"
+          className={"aggregation-data__aggregation-level" + yearActive}
           onClick={() => onAggregationChange("year")}
         >
           <p>Year</p>
@@ -32,6 +51,12 @@ const AggregationData = ({ onAggregationChange }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    dataAggregation: state.month.dataAggregation,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onAggregationChange: (dataAggregation) =>
@@ -39,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(AggregationData);
+export default connect(mapStateToProps, mapDispatchToProps)(AggregationData);

@@ -50,7 +50,7 @@ const Main = ({
         </div>
       </div>
       <Modal modalOpen={modalOpen} onModalOpen={onModalOpen}>
-        <AggregationData />
+        <AggregationData onModalOpen={onModalOpen}/>
       </Modal>
       <div className="main-content__month">
         <Container>
