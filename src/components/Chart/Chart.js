@@ -6,7 +6,7 @@ import useBudgetSum from "../../hooks/useBudgetSum";
 
 const Chart = React.memo(({ type, budget, title }) => {
   const { labels, values, colors } = useBudgetToChart(type, budget);
-  const sum = useBudgetSum(type, budget);
+  const sum = useBudgetSum(type, budget).toFixed(2);
 
   const data = {
     labels,
