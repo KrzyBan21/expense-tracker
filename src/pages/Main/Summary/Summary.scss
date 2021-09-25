@@ -6,6 +6,7 @@
   grid-row: 2/2;
   grid-column: 1/-1;
   grid-column-gap: 1rem;
+  align-self: flex-start;
 
   @media (min-width: $desktop) {
     grid-template-columns: repeat(12, [col-start] 1fr [col-end]);
